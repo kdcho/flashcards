@@ -1,9 +1,11 @@
 const express = require('express')
 const uid = require('uid')
+const cors = require('cors')
 let cards = require('./src/cards.json').map(card => ({ ...card, id: uid() }))
 
 const server = express()
 server.listen(3333, () => console.log('Server ready on port 3333'))
+server.use(cors())
 server.use(express.json())
 server.set('json spaces', 2)
 

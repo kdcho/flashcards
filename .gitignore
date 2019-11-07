@@ -1,4 +1,4 @@
 .cache
 .DS_Store
-node-modules
 dist
+node_modules

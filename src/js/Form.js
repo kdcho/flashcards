@@ -1,30 +1,21 @@
 export default class Form {
-  constructor(onClick) {
-    const templateEl = document.querySelector('#form-template')
-    const template = templateEl.innerHTML
-    document.body.insertAdjacentHTML('beforeend', template)
-    this.el = document.querySelector('.form')
-    this.addClickLogic(this.el, onClick)
+  constructor(onSubmit) {
+    const templateEl = document.querySelector('#form-template').innerHTML
+    document.body.insertAdjacentHTML('afterbegin', templateEl)
+    this.el = document.querySelector('[data-js=form]')
+    this.addSubmitLogic(onSubmit)
   }
 
-  addClickLogic(el, onClick) {
+  addSubmitLogic(onSubmit) {
     this.el.addEventListener('submit', event => {
       event.preventDefault()
-      this.buildFormData(el, onClick)
-      this.clearForm(el)
+      const dataList = new FormData(this.el)
+      const data = Object.fromEntries(dataList)
+      onSubmit(data)
+      this.clearForm()
     })
   }
-
-  buildFormData(el, onClick) {
-    const formObj = {
-      title: el.title.value,
-      question: el.question.value,
-      answer: el.answer.value
-    }
-    onClick(formObj)
-  }
-
-  clearForm(el) {
-    el.reset()
+  clearForm() {
+    this.el.reset()
   }
 }

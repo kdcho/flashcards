@@ -1,12 +1,13 @@
 export default class Card {
-  constructor(card) {
+  constructor(card, target) {
+    this.target = target
     this.createCardElement(card)
   }
 
   createCardElement(card) {
     const el = document.createElement('section')
     this.fillCard(card, el)
-    document.body.appendChild(el)
+    this.target.appendChild(el)
   }
 
   fillCard({ title, question, answer }, el) {

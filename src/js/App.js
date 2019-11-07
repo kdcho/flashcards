@@ -1,15 +1,14 @@
 import Form from './Form'
-import { getCards } from './services'
+import { getCards, postCard } from './services'
 import Card from './Card'
-import { postCard } from './services'
 
 export default class App {
   constructor() {
-    //const data = postCard(card)
+    this.cardContainer = document.querySelector('[data-js=card-container]')
     getCards()
       .then(cards => {
         this.cards = cards
-        cards.forEach(card => new Card(card))
+        this.renderCards()
       })
       .catch(err => console.log('--->', err))
 
@@ -17,7 +16,14 @@ export default class App {
   }
 
   handleSubmit(card) {
-    console.log('hier', card)
-    this.cards = [card, ...this.cards]
+    postCard(card).then(newCard => {
+      this.cards = [...this.cards, newCard]
+      this.renderCards()
+    })
+  }
+
+  renderCards() {
+    this.cardContainer.innerHTML = ''
+    this.cards.forEach(card => new Card(card, this.cardContainer))
   }
 }

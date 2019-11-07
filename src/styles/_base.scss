@@ -1,0 +1,12 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  display: grid;
+  justify-content: center;
+  margin: 0;
+  gap: 20px;
+  background: lightblue;
+  padding: 20px;
+  font-family: 'Helvetica Neue', sans-serif;
+}

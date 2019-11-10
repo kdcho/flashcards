@@ -8,14 +8,22 @@
     <title>Document</title>
   </head>
   <body>
-    <template id="form-template"
-      ><form data-js="form" class="form">
-        <label>Titel<input name="title"/></label>
-        <label>Frage<textarea rows="3" name="question"></textarea></label>
-        <label>Antwort<textarea rows="5" name="answer"></textarea></label>
-        <button class="form__submit">Absenden</button>
-      </form></template
-    >
+    <div class="new-card--container">
+      <img src="img/add01.svg" data-js="overlay-btn" class="card--add" />
+    </div>
+    <div data-js="overlay" class="overlay">
+      <template id="form-template"
+        ><form data-js="form" class="form">
+          <div class="card__icon--new">
+            <img src="img/close.svg" class="icon--close" data-js="icon-close" />
+          </div>
+          <label>Titel<input name="title"/></label>
+          <label>Frage<textarea rows="3" name="question"></textarea></label>
+          <label>Antwort<textarea rows="5" name="answer"></textarea></label>
+          <button class="form__submit">Absenden</button>
+        </form></template
+      >
+    </div>
     <div data-js="card-container" class="card-container"></div>
     <script src="js/main.js"></script>
   </body>

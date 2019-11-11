@@ -16,12 +16,14 @@ export default class Form {
       event.preventDefault()
       const dataList = new FormData(this.el)
       const data = Object.fromEntries(dataList)
-      this.editingId ? this.onEdit({ ...data, id: this.editingId }) : this.onSubmit(data)
-      this.el.reset()
+      this.editingId
+        ? this.onEdit({ ...data, id: this.editingId })
+        : this.onSubmit(data)
       this.editingId = null
 
       const overlayState = document.querySelector('[data-js="overlay"]')
       overlayState.classList.remove('overlay--active')
+      this.el.reset()
     })
   }
 

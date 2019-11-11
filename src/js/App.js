@@ -10,7 +10,7 @@ export default class App {
       onSubmit: this.handleSubmit,
       onEdit: this.handleEdit
     })
-
+    this.toggleOverlay()
     this.loadCards()
   }
 
@@ -63,5 +63,20 @@ export default class App {
           onEdit: this.startEditing
         })
     )
+  }
+
+  toggleOverlay() {
+    const overlayState = document.querySelector('.overlay')
+    const overlayBtn = document.querySelector('[data-js=overlay-btn]')
+    const overlayCloseIcon = document.querySelector('[data-js=icon-close]')
+
+    overlayBtn.addEventListener('click', () => {
+      overlayState.classList.add('overlay--active')
+    })
+    overlayCloseIcon.addEventListener('click', () => {
+      const el = document.querySelector('[data-js=form]')
+      el.reset()
+      overlayState.classList.remove('overlay--active')
+    })
   }
 }
